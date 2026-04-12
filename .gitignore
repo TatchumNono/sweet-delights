@@ -49,3 +49,6 @@ prisma/dev.db-journal
 
 # keep env example
 !.env.example
+
+# files
+DEPLOYMENT.md

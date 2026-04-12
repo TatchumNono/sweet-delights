@@ -65,7 +65,7 @@ export default function SignUp() {
           <div className="text-center mb-8">
             <span className="text-4xl">🍰</span>
             <h1 className="text-2xl font-bold text-gray-900 mt-4">Créer un compte</h1>
-            <p className="text-gray-500 mt-1">Rejoignez SweetDelights</p>
+            <p className="text-gray-500 mt-1">Rejoignez Sendcan</p>
           </div>
 
           {/* Google Sign Up */}

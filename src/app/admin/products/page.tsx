@@ -130,7 +130,13 @@ export default function AdminProductsPage() {
                         {product.inStock ? "En stock" : "Rupture"}
                       </button>
                     </td>
-                    <td className="px-6 py-4 text-right">
+                    <td className="px-6 py-4 text-right space-x-3">
+                      <Link
+                        href={`/admin/products/${product.id}/edit`}
+                        className="text-gold-600 hover:text-gold-800 text-sm font-medium transition-colors"
+                      >
+                        Modifier
+                      </Link>
                       <button
                         onClick={() => deleteProduct(product.id)}
                         className="text-red-400 hover:text-red-600 text-sm font-medium transition-colors"

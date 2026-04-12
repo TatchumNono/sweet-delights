@@ -1,3 +1,5 @@
+import { prisma } from "@/lib/prisma";
+
 interface OrderItem {
   name: string;
   quantity: number;
@@ -13,10 +15,28 @@ interface WhatsAppOrderData {
   orderId: string;
 }
 
+async function getWhatsAppConfig() {
+  try {
+    const settings = await prisma.setting.findMany({
+      where: { key: { in: ["whatsapp_phone", "callmebot_api_key"] } },
+    });
+    const map = new Map(settings.map((s) => [s.key, s.value]));
+    return {
+      phone: map.get("whatsapp_phone") || process.env.ADMIN_WHATSAPP_NUMBER || "",
+      apiKey: map.get("callmebot_api_key") || process.env.CALLMEBOT_API_KEY || "",
+    };
+  } catch {
+    return {
+      phone: process.env.ADMIN_WHATSAPP_NUMBER || "",
+      apiKey: process.env.CALLMEBOT_API_KEY || "",
+    };
+  }
+}
+
 export async function sendWhatsAppNotification(order: WhatsAppOrderData) {
-  const adminPhone = process.env.ADMIN_WHATSAPP_NUMBER;
-  if (!adminPhone) {
-    console.warn("ADMIN_WHATSAPP_NUMBER not configured");
+  const config = await getWhatsAppConfig();
+  if (!config.phone) {
+    console.warn("WhatsApp phone number not configured");
     return;
   }
 
@@ -35,7 +55,7 @@ export async function sendWhatsAppNotification(order: WhatsAppOrderData) {
 
   // Using WhatsApp API via CallMeBot or direct wa.me link
   // For production, use Twilio WhatsApp API or WhatsApp Business API
-  const whatsappUrl = `https://api.callmebot.com/whatsapp.php?phone=${adminPhone}&text=${message}&apikey=${process.env.CALLMEBOT_API_KEY}`;
+  const whatsappUrl = `https://api.callmebot.com/whatsapp.php?phone=${config.phone}&text=${message}&apikey=${config.apiKey}`;
 
   try {
     const response = await fetch(whatsappUrl);
@@ -47,8 +67,9 @@ export async function sendWhatsAppNotification(order: WhatsAppOrderData) {
   }
 }
 
-export function getWhatsAppDirectLink(order: WhatsAppOrderData): string {
-  const adminPhone = process.env.ADMIN_WHATSAPP_NUMBER || "";
+export async function getWhatsAppDirectLink(order: WhatsAppOrderData): Promise<string> {
+  const config = await getWhatsAppConfig();
+  const adminPhone = config.phone;
   const itemsList = order.items
     .map((item) => `• ${item.name} x${item.quantity} — ${item.price.toFixed(0)} FCFA`)
     .join("\n");

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,9 +9,15 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-2xl">🍰</span>
+              <Image
+                src="/images/logo.png"
+                alt="Sendcan"
+                width={44}
+                height={44}
+                className="rounded-lg"
+              />
               <span className="text-xl font-bold">
-                Sweet<span className="text-gold-light">Delights</span>
+                Send<span className="text-gold-light">can</span>
               </span>
             </div>
             <p className="text-gray-400 text-sm">
@@ -51,7 +58,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <span>📧</span>
-                <span>contact@sweetdelights.com</span>
+                <span>contact@sendcan.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <span>📍</span>
@@ -62,7 +69,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} SweetDelights. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Sendcan. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

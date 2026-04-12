@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SweetDelights - Gâteaux en Conserve & Jus de Fruits",
+  title: "Sendcan - Ouvrez! Fondez! Gâteaux en Conserve & Jus de Fruits",
   description:
     "Découvrez nos délicieux gâteaux en conserve et jus de fruits frais. Commandez en ligne et faites-vous livrer rapidement.",
 };

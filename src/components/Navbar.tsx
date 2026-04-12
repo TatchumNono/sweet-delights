@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useCart } from "./CartProvider";
 import { useState } from "react";
@@ -18,9 +19,15 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl">🍰</span>
+            <Image
+              src="/images/logo.png"
+              alt="Sendcan"
+              width={44}
+              height={44}
+              className="rounded-lg"
+            />
             <span className="text-xl font-bold text-gold-700">
-              Sweet<span className="text-gold">Delights</span>
+              Send<span className="text-gold">can</span>
             </span>
           </Link>
 

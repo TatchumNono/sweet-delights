@@ -39,7 +39,7 @@ export default function SignIn() {
           <div className="text-center mb-8">
             <span className="text-4xl">🍰</span>
             <h1 className="text-2xl font-bold text-gray-900 mt-4">Connexion</h1>
-            <p className="text-gray-500 mt-1">Bienvenue sur SweetDelights</p>
+            <p className="text-gray-500 mt-1">Bienvenue sur Sendcan</p>
           </div>
 
           {/* Google Sign In */}

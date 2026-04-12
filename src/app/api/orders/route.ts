@@ -93,23 +93,21 @@ export async function POST(request: Request) {
       },
     });
 
-    // Send WhatsApp notification for guest orders (no account)
-    if (!userId) {
-      const whatsappItems = order.items.map((item) => ({
-        name: item.product.name,
-        quantity: item.quantity,
-        price: item.price,
-      }));
+    // Send WhatsApp notification to admin
+    const whatsappItems = order.items.map((item) => ({
+      name: item.product.name,
+      quantity: item.quantity,
+      price: item.price,
+    }));
 
-      await sendWhatsAppNotification({
-        customerName,
-        customerPhone,
-        customerAddress,
-        items: whatsappItems,
-        total,
-        orderId: order.id,
-      });
-    }
+    await sendWhatsAppNotification({
+      customerName,
+      customerPhone,
+      customerAddress,
+      items: whatsappItems,
+      total,
+      orderId: order.id,
+    });
 
     return NextResponse.json(order);
   } catch (error) {

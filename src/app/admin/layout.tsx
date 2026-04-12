@@ -35,6 +35,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { href: "/admin", label: "Dashboard", icon: "📊" },
     { href: "/admin/products", label: "Produits", icon: "🍰" },
     { href: "/admin/orders", label: "Commandes", icon: "📦" },
+    { href: "/admin/settings", label: "Paramètres", icon: "⚙️" },
   ];
 
   return (
@@ -51,7 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     key={item.href}
                     href={item.href}
                     className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                      pathname === item.href
+                      pathname === item.href || pathname.startsWith(item.href + "/")
                         ? "bg-gold-50 text-gold-700"
                         : "text-gray-600 hover:bg-gray-50"
                     }`}
