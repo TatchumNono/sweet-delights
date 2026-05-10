@@ -223,10 +223,10 @@ export default function NewProductPage() {
         <div className="flex gap-4">
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || uploading}
             className="flex-1 bg-gold text-white py-3.5 rounded-xl font-semibold hover:bg-gold-dark transition-colors disabled:opacity-50"
           >
-            {loading ? "Création..." : "Créer le produit"}
+            {loading ? "Création..." : uploading ? "Upload en cours..." : "Créer le produit"}
           </button>
           <button
             type="button"
