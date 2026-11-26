@@ -25,7 +25,7 @@ The goal was to provide the business with an online presence where customers cou
 |---|---|
 | Next.js | Frontend and application development |
 | Prisma ORM | Database access and data management |
-| Database | PostgreSQL |
+| PostgreSQL | Relational database |
 | Vercel | Application deployment |
 
 ## 🚀 Getting Started
